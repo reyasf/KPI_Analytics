@@ -18,7 +18,7 @@ pandas.set_option("display.precision", 2)
 class KPI_Analytics:
     #path to the .csv file is stored in filepath
     def __init__(self):
-      self.filepath = r"https://cdn.shopify.com/s/files/1/0424/9098/6654/files/data.csv?v=1631922030"
+      self.filepath = r"data.csv"
       self.filetype = pathlib.Path(self.filepath).suffix
       #validate filetype
       if ".csv" in self.filetype:

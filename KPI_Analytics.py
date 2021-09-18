@@ -47,16 +47,16 @@ class KPI_Analytics:
       self.kpis.loc[data.total_sessions > 0, 'Sessions'] = data.total_sessions
       self.kpis.loc[data.total_sessions> 0, 'App_Sessions%'] = (data.app_sessions/data.total_sessions) * 100
       self.kpis.loc[data.total_sessions> 0, 'CvR_Overall'] = (data.total_orders/data.total_sessions) * 100
-      self.kpis.loc[data.total_sessions> 0, 'CvR_App'] = (data.app_orders/data.app_sessions) * 100
-      self.kpis.loc[data.total_sessions> 0, 'CvR_Web'] = (data.web_orders/data.web_sessions) * 100
-      self.kpis.loc[data.total_sessions> 0, 'Orders'] = data.total_orders
-      self.kpis.loc[data.total_sessions> 0, 'App_Orders%'] = (data.app_orders/data.total_orders) * 100
-      self.kpis.loc[data.total_sessions> 0, 'CIR_Overall'] = (data.total_cost/data.total_revenue) * 100
-      self.kpis.loc[data.total_sessions> 0, 'CIR_App'] = (data.app_cost/data.app_revenue) * 100
-      self.kpis.loc[data.total_sessions> 0, 'CIR_Web'] = (data.web_cost/(data.total_revenue-data.app_revenue)) * 100
-      self.kpis.loc[data.total_sessions> 0, 'AOV_Overall'] = data.total_revenue/data.total_orders
-      self.kpis.loc[data.total_sessions> 0, 'AOV_App'] = data.app_revenue/data.app_orders
-      self.kpis.loc[data.total_sessions> 0, 'AOV_Web'] = (data.total_revenue-data.app_revenue)/data.web_orders
+      self.kpis.loc[data.app_sessions> 0, 'CvR_App'] = (data.app_orders/data.app_sessions) * 100
+      self.kpis.loc[data.web_sessions> 0, 'CvR_Web'] = (data.web_orders/data.web_sessions) * 100
+      self.kpis.loc[data.total_orders> 0, 'Orders'] = data.total_orders
+      self.kpis.loc[data.total_orders> 0, 'App_Orders%'] = (data.app_orders/data.total_orders) * 100
+      self.kpis.loc[data.total_revenue> 0, 'CIR_Overall'] = (data.total_cost/data.total_revenue) * 100
+      self.kpis.loc[data.app_revenue> 0, 'CIR_App'] = (data.app_cost/data.app_revenue) * 100
+      self.kpis.loc[(data.total_revenue-data.app_revenue)> 0, 'CIR_Web'] = (data.web_cost/(data.total_revenue-data.app_revenue)) * 100
+      self.kpis.loc[data.total_orders> 0, 'AOV_Overall'] = data.total_revenue/data.total_orders
+      self.kpis.loc[data.app_orders> 0, 'AOV_App'] = data.app_revenue/data.app_orders
+      self.kpis.loc[data.web_orders> 0, 'AOV_Web'] = (data.total_revenue-data.app_revenue)/data.web_orders
       self.kpis.loc[data.total_sessions> 0, 'CostPerVisit'] = data.total_cost/data.total_sessions
       print(self.kpis.to_string(index=False))
       self.filterKPIFields()
